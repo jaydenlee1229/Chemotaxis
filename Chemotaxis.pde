@@ -1,13 +1,21 @@
  //declare bacteria variables here   
  void setup()   
  {     
- 	//initialize bacteria variables here   
+ 	size(500, 500);   
  }   
  void draw()   
  {    
- 	//move and show the bacteria   
+ 	Bacteria [] colony = {10};   
  }  
  class Bacteria    
  {     
- 	//lots of java!   
+ 	int myX;
+ 	int myY;
+ 	int mySize;
+ 	Bacteria(myX, myY, mySize)
+ 	{
+ 		myX = x;
+ 		myY = y;
+ 		mySize = 10;
+ 	}   
  }    
