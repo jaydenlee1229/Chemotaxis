@@ -21,8 +21,8 @@
  	int mySize;
  	Bacteria(int x, int y, int mySize)
  	{
- 		myX = x;
-  		myY = y;
+ 		//myX = x;
+  		//myY = y;
  		mySize = 10;
  	}   
  	void show()
