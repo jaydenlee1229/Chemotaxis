@@ -1,20 +1,25 @@
  //declare bacteria variables here
+ int x;
+ int y;
+ int size;
  Bacteria [] colony;
- int x = 250;
- int y = 250;
  void setup()   
  {     
  	size(500, 500);  
+ 	for(int i = 0; i < colony.length; i++)
+ 	{
+ 		colony[i] = new Bacteria(x, y, 10);
+ 	}
  }   
  void draw()   
  {    
   	background(0);
- 	colony = new Bacteria [4];
+ 	colony = new Bacteria [10];
  	for(int i = 0; i < colony.length; i++)
  	{
- 		colony[i] = new Bacteria(x, y, i * 5);
  		colony[i].show();
  		colony[i].move();
+ 		System.out.println(x);
  	}
  }  
  class Bacteria    
@@ -24,19 +29,19 @@
  	int mySize;
  	Bacteria(int x, int y, int size)
  	{
- 		myX = x;
-  		myY = y;
- 		mySize = size;
+ 		myX = (int)(Math.random() * 500);
+  		myY = (int)(Math.random() * 500);
  	}   
  	void show()
  	{
- 		ellipse(myX, myY, mySize, mySize);
+  		fill(255, 255, 0);
+ 		ellipse(myX, myY, 5, 5);
  	}
  	void move()
  	{
- 		boolean xDir;
- 		boolean right;
- 		boolean up;
+ 		boolean xDir = true;
+ 		boolean right = true;
+ 		boolean up = false;
  		if(Math.random() < .5)
  		{
  			xDir = true;
