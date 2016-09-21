@@ -1,33 +1,37 @@
- //declare bacteria variables here
  int x;
  int y;
- int size;
  Bacteria [] colony;
+ boolean xDir = true;
+ boolean right = true;
+ boolean up = false;
+ int a = (int)(Math.random() * 500);
+ int b = (int)(Math.random() * 500);
  void setup()   
  {     
- 	size(500, 500);  
- 	for(int i = 0; i < colony.length; i++)
- 	{
- 		colony[i] = new Bacteria(x, y, 10);
- 	}
- }   
- void draw()   
- {    
-  	background(0);
+ 	size(500, 500);
+ 	frameRate = (1);
  	colony = new Bacteria [10];
  	for(int i = 0; i < colony.length; i++)
  	{
+ 		colony[i] = new Bacteria(x, y);
+ 	}
+ }   
+ void draw()   
+ {  
+ 	background(0);
+  	for(int i = 0; i < colony.length; i++)
+ 	{
  		colony[i].show();
  		colony[i].move();
- 		System.out.println(x);
  	}
+ 	antibiotic();
  }  
  class Bacteria    
  {     
  	int myX;
  	int myY;
  	int mySize;
- 	Bacteria(int x, int y, int size)
+ 	Bacteria(int x, int y)
  	{
  		myX = (int)(Math.random() * 500);
   		myY = (int)(Math.random() * 500);
@@ -35,13 +39,10 @@
  	void show()
  	{
   		fill(255, 255, 0);
- 		ellipse(myX, myY, 5, 5);
+ 		ellipse(myX % 500, myY % 500, 7, 7);
  	}
  	void move()
  	{
- 		boolean xDir = true;
- 		boolean right = true;
- 		boolean up = false;
  		if(Math.random() < .5)
  		{
  			xDir = true;
@@ -68,19 +69,28 @@
  		}
  		if(right)
  		{
- 			x += 3;
+ 			myX += 2;
  		}
  		if(!right)
  		{
- 			x -= 3;
+ 			myX -= 2;
  		}
  		if(up)
  		{
- 			y += 3;
+ 			myY += 2;
  		}
  		if(!up)
  		{
- 			y -= 3;
+ 			myY -= 2;
  		}
  	}
  }    
+ void antibiotic()
+ {
+ 	fill(255);
+ 	eliipse(int a, int b, 10, 10);
+ 	if(keyPressed && keyCode == 37)
+ 	{
+ 		a -= 1;
+ 	}
+ }
