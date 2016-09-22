@@ -1,17 +1,14 @@
- int x;
- int y;
  Bacteria [] colony;
- boolean alive = true;
  int a = (int)(Math.random() * 500);
  int b = (int)(Math.random() * 500);
  void setup()   
  {     
  	size(500, 500);
  	frameRate = (1);
- 	colony = new Bacteria [20];
+ 	colony = new Bacteria [40];
  	for(int i = 0; i < colony.length; i++)
  	{
- 		colony[i] = new Bacteria(x, y);
+ 		colony[i] = new Bacteria();
  	}
  }   
  void draw()   
@@ -19,19 +16,13 @@
  	noStroke();
  	fill(0, 0, 0, 50);
  	rect(0, 0, 500, 500);
+ 	antibiotic();
   	for(int i = 0; i < colony.length; i++)
  	{
- 		if(alive == true)
- 		{
- 			colony[i].show();
- 		}
+ 		colony[i].show();
  		colony[i].move();
  	}
- 	antibiotic();
- 	if(a == x && b == y)
- 	{
- 		alive = false;
- 	}
+ 	
  }  
  class Bacteria    
  {     
@@ -39,17 +30,30 @@
  	int myY;
  	int move1;
  	int move2;
- 	Bacteria(int x, int y)
+ 	boolean alive;
+ 	Bacteria()
  	{
  		myX = (int)(Math.random() * 500);
   		myY = (int)(Math.random() * 500);
   		move1 = 0;
   		move2 = 0;
+  		alive = true;
  	}   
  	void show()
  	{
-  		fill(150, 255, 0);
- 		ellipse(myX % 499, myY % 499, 7, 7);
+ 		if(alive == true)
+ 		{
+  			fill(150, 255, 0);
+ 			ellipse(myX % 499, myY % 499, 7, 7);
+ 		}
+ 		if(((Math.abs(myX - a)) < 7) || ((Math.abs(myX - a) < 7)))
+ 		{
+ 			alive = false;
+ 		}
+ 		if(mousePressed)
+		{
+ 			alive = true;
+		}
  	}
  	void move()
  	{
@@ -86,24 +90,19 @@
  	ellipse(a % 499, b % 499, 15, 15);
  	if(keyPressed && keyCode == 37)
  	{
- 		a -= 2;
+ 		a -= 3;
  	}
  	if(keyPressed && keyCode == 39)
  	{
- 		a += 2;
+ 		a += 3;
  	}
  	if(keyPressed && keyCode == 38)
  	{
- 		b -= 2;
+ 		b -= 3;
  	}
  	if(keyPressed && keyCode == 40)
  	{
- 		b += 2;
+ 		b += 3;
  	}
  }
- void mousePressed()
- {
- 	alive = true;
- }
-
- //get(a + 1, b + 1) == color(150, 255, 0)) || (get(a + 1, b - 1) == color(150, 255, 0)) || (get(a - 1, b + 1) == color(150, 255, 0)) || (get(a - 1, b - 1) == color(150, 255, 0)))
+ //
