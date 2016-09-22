@@ -1,9 +1,6 @@
  int x;
  int y;
  Bacteria [] colony;
- boolean xDir = true;
- boolean right = true;
- boolean up = false;
  boolean alive = true;
  int a = (int)(Math.random() * 500);
  int b = (int)(Math.random() * 500);
@@ -19,7 +16,9 @@
  }   
  void draw()   
  {  
- 	background(0);
+ 	noStroke();
+ 	fill(0, 0, 0, 50);
+ 	rect(0, 0, 500, 500);
   	for(int i = 0; i < colony.length; i++)
  	{
  		if(alive == true)
@@ -29,7 +28,7 @@
  		colony[i].move();
  	}
  	antibiotic();
- 	if(abs(a - x) < 15 || abs(b - y) < 15)
+ 	if(a == x && b == y)
  	{
  		alive = false;
  	}
@@ -38,11 +37,14 @@
  {     
  	int myX;
  	int myY;
- 	int mySize;
+ 	int move1;
+ 	int move2;
  	Bacteria(int x, int y)
  	{
  		myX = (int)(Math.random() * 500);
   		myY = (int)(Math.random() * 500);
+  		move1 = 0;
+  		move2 = 0;
  	}   
  	void show()
  	{
@@ -51,66 +53,57 @@
  	}
  	void move()
  	{
- 		if(Math.random() < .5)
+ 		if(move1 == 40)
  		{
- 			xDir = true;
- 			if(Math.random() < .5)
- 			{
- 				right = true;
- 			}
- 			else if(Math.random() < 1)
- 			{
- 				right = false;
- 			}
+ 			move2 = (int)(Math.random() * 4);
+ 			move1 = 0;
  		}
- 		else if(Math.random() < 1)
+ 		else
  		{
- 			xDir = false;
- 			if(Math.random() < .5)
- 			{
- 				up = true;
- 			}
- 			else if(Math.random() < 1)
- 			{
- 				up = false;
- 			}
+ 			move1 ++;	
  		}
- 		if(right)
+ 		if(move2 == 0)
  		{
- 			myX += 3;
+ 			myX += 1;
  		}
- 		if(!right)
+ 		if(move2 == 1)
  		{
- 			myX -= 3;
+ 			myX -= 1;
  		}
- 		if(up)
+ 		if(move2 == 2)
  		{
- 			myY += 3;
+ 			myY += 1;
  		}
- 		if(!up)
+ 		if(move2 == 3)
  		{
- 			myY -= 3;
+ 			myY -= 1;
  		}
  	}
- }    
+ }
  void antibiotic()
  {
  	fill(a / 2, b / 2, 150);
  	ellipse(a % 499, b % 499, 15, 15);
  	if(keyPressed && keyCode == 37)
  	{
- 		a -= 1;
+ 		a -= 2;
  	}
  	if(keyPressed && keyCode == 39)
  	{
- 		a += 1;
+ 		a += 2;
  	}
  	if(keyPressed && keyCode == 38)
  	{
- 		b -= 1;
+ 		b -= 2;
  	}
  	if(keyPressed && keyCode == 40)
  	{
- 		b += 1;
+ 		b += 2;
  	}
  }
+ void mousePressed()
+ {
+ 	alive = true;
+ }
+
+ //get(a + 1, b + 1) == color(150, 255, 0)) || (get(a + 1, b - 1) == color(150, 255, 0)) || (get(a - 1, b + 1) == color(150, 255, 0)) || (get(a - 1, b - 1) == color(150, 255, 0)))
