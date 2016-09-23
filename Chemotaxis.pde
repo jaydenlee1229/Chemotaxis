@@ -1,6 +1,6 @@
  Bacteria [] colony;
- int a = (int)(Math.random() * 500);
- int b = (int)(Math.random() * 500);
+ int a = 250;
+ int b = 250;
  void setup()   
  {     
  	size(500, 500);
@@ -46,7 +46,7 @@
   			fill(150, 255, 0);
  			ellipse(myX % 499, myY % 499, 7, 7);
  		}
- 		if(((Math.abs(myX - a)) < 7) || ((Math.abs(myX - a) < 7)))
+ 		if(((Math.abs(myX - a)) < 7) || ((Math.abs(myY - b) < 7)))
  		{
  			alive = false;
  		}
@@ -103,6 +103,14 @@
  	if(keyPressed && keyCode == 40)
  	{
  		b += 3;
+ 	}
+ 	if(a < 0)
+ 	{
+ 		a = 500;
+ 	}
+ 	if(b < 0)
+ 	{
+ 		a = 500;
  	}
  }
  //
